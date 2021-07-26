@@ -1,4 +1,3 @@
-let number = 1521166;
 function convertNumberInPrice(number) {
     let price = Intl.NumberFormat('fr-FR', 
     {
