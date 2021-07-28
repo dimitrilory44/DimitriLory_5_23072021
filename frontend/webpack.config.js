@@ -12,10 +12,10 @@ module.exports = {
     mode: "production",
     entry: {
         app: [
-            "./frontend/public/js/index.js"
+            "./public/js/index.js"
         ],
         produit: [
-            "./frontend/public/js/product.js"
+            "./public/js/product.js"
         ]
     },
     output: {
