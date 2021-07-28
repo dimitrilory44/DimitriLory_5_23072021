@@ -4,13 +4,18 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "sass": "sass --watch ./frontend/sass/main.scss:./frontend/public/css/style.css",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "webpack --watch",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2"
   }
 }
