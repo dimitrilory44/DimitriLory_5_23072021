@@ -8,11 +8,13 @@ function convertNumberInPrice(number) {
     return price;
 }
 
-export function getValueOption(values) {
+function getValueOption(value) {
     let option = document.getElementById('options');
-    for(let value of values) {
-        
-    }
+    option.innerHTML = 
+        `
+            <option>${value}</option>
+        `
+    
 }
 
 // Affichage de tous les produits sur la page d'accueil

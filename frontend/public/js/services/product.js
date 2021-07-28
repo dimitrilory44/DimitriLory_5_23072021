@@ -1,10 +1,8 @@
-import { getParameters, getElementById } from "./utils/functions";
-
-// Je récupère le paramètre id envoyer
-const id = getParameters();
+import {getElementById} from "../utils/functions";
+import {apiURL, id} from '../config';
 
 // Je récupère par l'id sur la page d'accueil
-fetch("http://localhost:3000/api/cameras/" + id) 
+fetch(`${apiURL}/api/cameras/${id}`) 
     .then((res) => {
         if (res.ok) {
             return res.json();
@@ -17,4 +15,3 @@ fetch("http://localhost:3000/api/cameras/" + id)
     .catch((err) => {
         throw new err;
     });
-
