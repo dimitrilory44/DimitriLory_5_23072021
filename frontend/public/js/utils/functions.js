@@ -1,3 +1,5 @@
+// bien penser à supprimer les functions inutilisé
+
 function convertNumberInPrice(number) {
     let price = Intl.NumberFormat('fr-FR', 
     {
@@ -6,15 +8,6 @@ function convertNumberInPrice(number) {
     }).format(number/100);
 
     return price;
-}
-
-function getValueOption(value) {
-    let option = document.getElementById('options');
-    option.innerHTML = 
-        `
-            <option>${value}</option>
-        `
-    
 }
 
 // Affichage de tous les produits sur la page d'accueil
@@ -35,7 +28,9 @@ export function getAllElement(values) {
                             <div class="ml-auto align-items-center"><h5><strong>${price}</strong></h5></div>
                         </div>
                         <p class="card-text">${value.description}</p>
-                        <a href="pages/produit.html?_id=${value._id}" class="btn btn-outline-secondary">Descriptif du produit</a>
+                        <a href="pages/produit.html?_id=${value._id}" class="btn btn-outline-secondary btn--width">
+                            Descriptif du produit
+                        </a>
                     </div>
                 </div>
             </div>
@@ -55,43 +50,46 @@ export function getParameters() {
 }
 
 export function getElementById(value) {
-    let element = document.getElementById('produit');
-    let price = convertNumberInPrice(`${value.price}`);
-    element.innerHTML = 
-        `
-            <div class="card mb-5">
-                <div class="row m-3">
-                    <div class="col-lg-5 d-flex">
-                        <img class="card-img-top" src="${value.imageUrl}"/>
-                    </div>
-                    <div class="col-lg-7 py-3 pr-5">
-                        <div class="d-flex ">
-                            <h5 class="card-title">${value.name}</h5>
-                            <div class="ml-auto align-items-center"><h5><strong>${price}</strong></h5></div>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="options">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <p class="card-text">${value.description}</p>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Quantité :</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <a href="" class="btn btn-outline-primary">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
-        `
+    // Récupération titre et descriptif
+    const title = document.querySelector(".jumbotron h1");
+    title.textContent = `${value.name}`;
+
+    const descriptif = document.querySelector(".jumbotron p");
+    descriptif.textContent = `${value.description}`;
+
+    // Récupération de l'image du produit
+    const image = document.getElementById('image');
+    image.innerHTML = `<img class="card-img-top" src="${value.imageUrl}"/>`;
+    
+    // Récupération des options objectif
+    const option = document.getElementById('options');
+    for(let opt of value.lenses) {
+        option.innerHTML += `<option value="${opt}">${opt}</option>`;
+    }
+
+    const quantite = document.getElementById('quantite');
+    for(let qut = 1; qut <= 5; qut++ ) {
+        quantite.innerHTML += `<option value="${qut}">${qut}</option>`;
+    }
+    
+    const price = document.querySelector('.prix span');
+    const priceConvert = convertNumberInPrice(`${value.price}`);
+    price.textContent = `${priceConvert}`;
+
+    quantite.addEventListener('change', (event) => {
+        let newPrice = 0;
+        const price = document.querySelector('.prix span');
+        newPrice = `${value.price}` * parseInt(`${event.target.value}`);
+        const priceConvert = convertNumberInPrice(`${newPrice}`);
+        price.textContent = `${priceConvert}`;
+    });
+
+    const elmt = document.getElementById('goToBasket');
+    elmt.addEventListener('click', e => {
+        e.preventDefault();
+        const nomAlert = document.querySelector("#alert span strong");
+        nomAlert.textContent = `${value.name}`;
+        const alert = document.getElementById("alert");
+        alert.classList.replace("no-show", "show");
+    })
 }

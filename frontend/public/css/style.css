@@ -2,4 +2,29 @@ a {
   color: black;
 }
 
+main {
+  margin-bottom: 8em;
+}
+main .prix {
+  font-weight: bold;
+  font-size: 18px;
+}
+main .no-show {
+  display: none !important;
+}
+main .show {
+  display: flex !important;
+  justify-content: center;
+}
+main .btn--width {
+  width: 100%;
+}
+
+footer {
+  margin: auto;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 /*# sourceMappingURL=style.css.map */
