@@ -43,21 +43,10 @@ if(JSON.parse(localStorage.getItem('produit')) === null) {
             </div>
 
             <table class="table table-hover">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">Produit</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Objectif</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">Sous-total</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
                 <tbody id="corps" class="text-center"></tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="4" class="bg-white"></th>
+                        <th colspan="3" class="bg-white"></th>
                         <th scope="row" class="text-center label">
                             total
                         </th>
@@ -96,7 +85,6 @@ if(JSON.parse(localStorage.getItem('produit')) === null) {
                             <span class="plus bg-dark">+</span>
                         </a>
                     </td>
-                    <td class="align-middle">${priceConvert}</td>
                     <td class="align-middle">${ssTotalConvert}</td>
                     <td class="align-middle">
                         <a>
