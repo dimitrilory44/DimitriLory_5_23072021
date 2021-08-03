@@ -1,6 +1,7 @@
 import {getAllElement} from '../utils/functions';
 import {apiURL} from '../config';
 
+
 // Je récupère toutes les valeurs sur la page d'accueil
 fetch(`${apiURL}/api/cameras`) 
     .then((res) => {
@@ -9,9 +10,8 @@ fetch(`${apiURL}/api/cameras`)
         }
     })
     .then((value) => {
-        console.log(value);
         getAllElement(value);
     })
     .catch((err) => {
-        throw new err;
+        alert(err);
     });

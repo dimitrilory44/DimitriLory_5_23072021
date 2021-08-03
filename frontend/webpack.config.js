@@ -16,6 +16,9 @@ module.exports = {
         ],
         produit: [
             "./public/js/services/product.js"
+        ],
+        panier: [
+            "./public/js/services/panier.js"
         ]
     },
     output: {

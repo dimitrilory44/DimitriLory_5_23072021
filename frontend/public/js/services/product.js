@@ -9,7 +9,6 @@ fetch(`${apiURL}/api/cameras/${id}`)
         }
     })
     .then((value) => {
-        console.log(value);
         getElementById(value);
     })
     .catch((err) => {
