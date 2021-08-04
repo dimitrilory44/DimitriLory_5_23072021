@@ -25,7 +25,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="panier.html">
                     <i class="fas fa-shopping-cart"></i>                  
-                    <span>Panier</span>
                     <span id="notification" class="badge badge-pill badge-danger"></span>
                   </a>
                 </li>
@@ -42,8 +41,26 @@
             <!-- import js du descriptif du produit -->
           </p>
         </section>
-        <div id="alert" class="alert alert-success no-show" role="alert">
-          L'article&nbsp;<span><strong></strong></span>&nbsp;a été ajouté au panier
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ajout produit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div id="alert" class="modal-body">
+                L'article&nbsp;<span><strong></strong></span>&nbsp;a bien été ajouté au panier.<br><br>Que souhaitez-vous faire ?
+              </div>
+              <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" href="panier.html">Voir le panier</a>
+                <a type="button" class="btn btn-primary" href="../index.html">Continuer votre achat</a>
+              </div>
+            </div>
+          </div>
         </div>
         <section>
           <div class="card">
@@ -74,7 +91,7 @@
                     </span>
                   </div>
                 </div>
-                <button type="submit" id="goToBasket" class="btn btn-outline-primary btn--width mt-5">
+                <button type="submit" id="goToBasket" class="btn btn-outline-primary btn--width mt-5" data-toggle="modal" data-target="#exampleModalLong">
                   <span>Ajouter au panier</span>
                   <i class="fas fa-shopping-cart"></i>
                 </button>

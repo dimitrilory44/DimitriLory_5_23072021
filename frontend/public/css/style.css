@@ -48,6 +48,7 @@ main .label {
   text-transform: uppercase;
 }
 main .trash--color {
+  cursor: pointer;
   color: red;
 }
 main .btn--width {

@@ -1,4 +1,5 @@
 // bien penser à supprimer les functions inutilisé
+export const panier = JSON.parse(localStorage.getItem('produit')) || [];
 
 export function convertNumberInPrice(number) {
     let price = Intl.NumberFormat('fr-FR', 
@@ -22,10 +23,38 @@ export function cacheBasket() {
 
 export function delAllElementPanier() {
     const delPanier = document.getElementById("panier");
-    delPanier.addEventListener('click', e => {
+    delPanier.addEventListener('click', () => {
         localStorage.clear();
         window.location.reload();
     });
+}
+
+export function delElementPanier(event) {
+    let indexValue = event.target.getAttribute("data-index");
+    console.log(indexValue);
+    panier.splice(indexValue, 1);
+    localStorage.setItem("produit", JSON.stringify(panier));
+    window.location.reload();
+}
+
+export function diminuerQuantite(event) {
+    let indexQuantite = event.target.getAttribute("data-index");
+    if(panier[indexQuantite].quantite <= 1) {
+        panier.splice(indexQuantite, 1);
+        localStorage.setItem("produit", JSON.stringify(panier));
+        window.location.reload();
+    } else {
+        panier[indexQuantite].quantite--;
+        localStorage.setItem("produit", JSON.stringify(panier));
+        window.location.reload();
+    }
+}
+
+export function augmenterQuantite(event) {
+    let indexQuantite = event.target.getAttribute("data-index");
+    panier[indexQuantite].quantite++;
+    localStorage.setItem("produit", JSON.stringify(panier));
+    window.location.reload();
 }
 
 export function calculTotal(value) {
@@ -36,26 +65,6 @@ export function calculTotal(value) {
     const total = document.getElementById("total");
     total.innerText += `${convertNumberInPrice(totalValue)}`;
     return total;
-}
-
-export function diminuerQuantite(value) {
-    const diminuer = document.getElementById("diminuer");
-    diminuer.addEventListener('click', e => {
-        value.forEach((p) => {
-            let newValeur = 0;
-            console.log(p.quantite);
-            newValeur = p.quantite - 1;
-            
-            const qte = document.getElementsByClassName("diminuer");
-            const oldQte = document.createElement("span");
-            const newQte = document.createElement("span");
-            
-            qte.removeChild(oldQte);
-            console.log(newQte);
-            newQte.innerHTML = `<span>${newValeur}</span>`;
-            qte.appendChild(newQte);
-        })
-    });
 }
 
 // Affichage de tous les produits sur la page d'accueil

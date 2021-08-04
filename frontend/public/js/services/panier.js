@@ -1,8 +1,9 @@
-import {cacheBasket, convertNumberInPrice, delAllElementPanier, diminuerQuantite, calculTotal} from '../utils/functions';
+import {cacheBasket, convertNumberInPrice, delAllElementPanier, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier} from '../utils/functions';
 
 cacheBasket();
 
-if(JSON.parse(localStorage.getItem('produit')) === null) {
+
+if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) {
     const newElmt = document.createElement("section");
     const elmt = document.getElementById("main");
 
@@ -27,22 +28,20 @@ if(JSON.parse(localStorage.getItem('produit')) === null) {
 
     newElmt.appendChild(a);
 } else {
-    let panier = JSON.parse(localStorage.getItem('produit'));
-    console.log(panier);
 
     const newElmt = document.createElement("section");
     const elmt = document.getElementById("main");
 
-    newElmt.classList.add("container", "my-3", "align-middle");
+    newElmt.classList.add("container", "my-5", "align-middle");
     elmt.appendChild(newElmt);
 
     newElmt.innerHTML = 
         `   
-            <div class="d-flex justify-content-end mb-3">
-                <button id="panier" class="btn btn-outline-danger">Vider mon panier</button>
-            </div>
-
             <table class="table table-hover">
+                <div class="d-flex mb-3">
+                    <h1>Mon panier</h1>
+                    <button id="panier" class="btn btn-outline-danger ml-auto">Vider mon panier</button>
+                </div>
                 <tbody id="corps" class="text-center"></tbody>
                 <tfoot>
                     <tr>
@@ -61,12 +60,10 @@ if(JSON.parse(localStorage.getItem('produit')) === null) {
         `;
     
     panier.forEach((p) => {
-        const priceConvert = convertNumberInPrice(`${p.prix}`);
+        let index = panier.indexOf(p);
         let ssTotal = 0;
         ssTotal = `${p.prix}` * parseInt(`${p.quantite}`);
-        const ssTotalConvert = convertNumberInPrice(`${ssTotal}`);
-        let total = 0;
-        total += ssTotal;
+        
         const body = document.getElementById("corps");
         body.innerHTML += 
             `
@@ -77,25 +74,43 @@ if(JSON.parse(localStorage.getItem('produit')) === null) {
                     <td class="align-middle">${p.nom}</td>
                     <td class="align-middle">${p.objectif}</td>
                     <td class="align-middle qty">
-                        <a id="diminuer">
-                            <span class="minus bg-dark">-</span>
+                        <a class="diminuer" role="button">
+                            <span class="minus bg-dark" data-index="${index}">-</span>
                         </a>
-                        <span>${p.quantite}</span>
-                        <a id="augmenter">
-                            <span class="plus bg-dark">+</span>
+                        <span class="qte">${p.quantite}</span>
+                        <a class="augmenter" role="button">
+                            <span class="plus bg-dark" data-index="${index}">+</span>
                         </a>
                     </td>
-                    <td class="align-middle">${ssTotalConvert}</td>
+                    <td class="align-middle">${convertNumberInPrice(`${ssTotal}`)}</td>
                     <td class="align-middle">
-                        <a>
-                            <i class="fas fa-trash-alt trash--color"></i>
+                        <a class="trash" role="button">
+                            <i class="fas fa-trash-alt trash--color" data-index="${index}"></i>
                         </a>
                     </td>
                 </tr>
             `
-        })
+    });
+    
+    delAllElementPanier();
     calculTotal(panier);
 
-    delAllElementPanier();
-    diminuerQuantite(panier);
+    let delElement = document.getElementsByClassName("trash");
+        
+    for (let del of delElement) {
+        del.addEventListener("click", delElementPanier);
+    }
+
+    let diminuer = document.getElementsByClassName("diminuer");
+
+    for(let dim of diminuer) {
+        dim.addEventListener("click", diminuerQuantite);
+    }
+
+    let augmenter = document.getElementsByClassName("augmenter");
+
+    for(let aug of augmenter) {
+        aug.addEventListener("click", augmenterQuantite);
+    }
+
 }
