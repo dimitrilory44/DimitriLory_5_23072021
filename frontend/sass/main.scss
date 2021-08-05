@@ -46,6 +46,18 @@ main {
         }
     }
 
+    .augmenter {
+        :hover {
+            background-color: green!important;
+        }
+    }
+
+    .diminuer {
+        :hover {
+            background-color: red!important;
+        }
+    }
+
     #total {
         font-weight: bold;
         font-size: 20px;
@@ -56,9 +68,39 @@ main {
         text-transform: uppercase;
     }
 
+    .nom {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .descriptif {
+        :hover {
+            text-decoration: none;
+        }
+    }
+
     .trash--color {
+        color: #BDBDBD;
+    }
+
+    .trash--width {
+        font-size: 18px;
+    }
+
+    .trash {
+        position: absolute;
+        top: 1rem;
+        right: 10px;
         cursor: pointer;
-        color: red;
+        :hover {
+            color: red!important;
+        }
+        font-size: 20px;
+    }
+
+    .price {
+        font-weight: bold;
+        color: grey;
     }
 
     .btn--width {

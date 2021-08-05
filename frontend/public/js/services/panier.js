@@ -32,31 +32,27 @@ if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) 
     const newElmt = document.createElement("section");
     const elmt = document.getElementById("main");
 
-    newElmt.classList.add("container", "my-5", "align-middle");
+    newElmt.classList.add("my-5", "align-middle");
     elmt.appendChild(newElmt);
 
     newElmt.innerHTML = 
         `   
-            <table class="table table-hover">
-                <div class="d-flex mb-3">
-                    <h1>Mon panier</h1>
-                    <button id="panier" class="btn btn-outline-danger ml-auto">Vider mon panier</button>
-                </div>
-                <tbody id="corps" class="text-center"></tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="3" class="bg-white"></th>
-                        <th scope="row" class="text-center label">
-                            total
-                        </th>
-                        <td id="total" class="d-flex justify-content-center"></td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <div class="d-flex justify-content-end">
-                <button id="valider" class="btn btn-outline-success">Valider ma commande</button>
+            <div class="d-flex mb-3 container">
+                <h1>Mon panier</h1>
             </div>
+
+            <div id="corps" class="card p-3 container">
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+                <h4 class="label mr-5">Total</h4>
+                <div id="total"></div>
+            </div>
+            
+            <div class="d-flex justify-content-end mt-5">
+                <a role="button" id="valider" class="btn btn-success text-white" href="./validation.html">Valider ma commande</a>
+            </div>
+
         `;
     
     panier.forEach((p) => {
@@ -67,32 +63,42 @@ if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) 
         const body = document.getElementById("corps");
         body.innerHTML += 
             `
-                <tr>
-                    <td scope="w-25">
-                        <img src="${p.img}" class="img-thumbnail" width="200"/>
-                    </td>
-                    <td class="align-middle">${p.nom}</td>
-                    <td class="align-middle">${p.objectif}</td>
-                    <td class="align-middle qty">
-                        <a class="diminuer" role="button">
-                            <span class="minus bg-dark" data-index="${index}">-</span>
-                        </a>
-                        <span class="qte">${p.quantite}</span>
-                        <a class="augmenter" role="button">
-                            <span class="plus bg-dark" data-index="${index}">+</span>
-                        </a>
-                    </td>
-                    <td class="align-middle">${convertNumberInPrice(`${ssTotal}`)}</td>
-                    <td class="align-middle">
-                        <a class="trash" role="button">
-                            <i class="fas fa-trash-alt trash--color" data-index="${index}"></i>
-                        </a>
-                    </td>
-                </tr>
+                <div class="d-flex justify-content-end">
+                    <a class="trash" role="button">
+                        <i class="fas fa-trash-alt trash--color" data-index="${index}"></i>
+                    </a>
+                </div>
+                <div class="row d-flex mb-3">
+                  <div class="col-lg-5 col-md-5 col-sm-5">
+                    <img src="${p.img}" class="img-fluid img-thumbnail w-75"/>
+                  </div>
+                  <div class="col-lg-7 col-md-7 col-sm-7 mt-3">
+                    <div class="d-flex justify-content-between ">
+                        <div class="d-flex justify-content-start flex-column descriptif">
+                            <a role="button" href="produit.html?_id=${p.id}">
+                                <h3>${p.nom}</h3>
+                            </a>
+                            <span>Ref : ${p.id}</span>
+                            <span class="mb-3">Objectif : ${p.objectif}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-5">
+                        <div class="qty "d-flex justify-content-start">
+                            <a class="diminuer" role="button">
+                                <span class="minus bg-dark" data-index="${index}">-</span>
+                            </a>
+                            <span class="qte">${p.quantite}</span>
+                            <a class="augmenter" role="button">
+                                <span class="plus bg-dark" data-index="${index}">+</span>
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-end price">${convertNumberInPrice(`${ssTotal}`)}</div>
+                    </div>
+                  </div>
+                </div>
             `
     });
     
-    delAllElementPanier();
     calculTotal(panier);
 
     let delElement = document.getElementsByClassName("trash");
@@ -112,5 +118,7 @@ if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) 
     for(let aug of augmenter) {
         aug.addEventListener("click", augmenterQuantite);
     }
+
+
 
 }

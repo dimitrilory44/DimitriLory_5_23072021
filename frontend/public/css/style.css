@@ -39,6 +39,12 @@ main .qty .minus {
   border-radius: 50%;
   background-clip: padding-box;
 }
+main .augmenter :hover {
+  background-color: green !important;
+}
+main .diminuer :hover {
+  background-color: red !important;
+}
 main #total {
   font-weight: bold;
   font-size: 20px;
@@ -47,9 +53,32 @@ main .label {
   font-size: 20px;
   text-transform: uppercase;
 }
+main .nom {
+  font-size: 18px;
+  font-weight: bold;
+}
+main .descriptif :hover {
+  text-decoration: none;
+}
 main .trash--color {
+  color: #BDBDBD;
+}
+main .trash--width {
+  font-size: 18px;
+}
+main .trash {
+  position: absolute;
+  top: 1rem;
+  right: 10px;
   cursor: pointer;
-  color: red;
+  font-size: 20px;
+}
+main .trash :hover {
+  color: red !important;
+}
+main .price {
+  font-weight: bold;
+  color: grey;
 }
 main .btn--width {
   width: 100%;
