@@ -2,8 +2,15 @@ a {
     color: black;
 }
 
+
 main {
     margin-bottom: 8em;
+    
+    .jumbotron {
+        margin-right: -15px!important;
+        margin-left: -15px!important;
+        border-radius: 0;
+    }
 
     .prix {
         font-weight: bold;
@@ -105,12 +112,12 @@ main {
     .btn--width {
         width: 100%;
     }
+
+    .show {
+        display: block!important;
+    }
 }
 
-
 footer {
-    margin: auto;
-    position: fixed;
-    bottom: 0;
     width: 100%;
 }

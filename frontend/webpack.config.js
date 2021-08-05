@@ -19,9 +19,6 @@ module.exports = {
         ],
         panier: [
             "./public/js/services/panier.js"
-        ],
-        validation: [
-            "./public/js/services/validation.js"
         ]
     },
     output: {

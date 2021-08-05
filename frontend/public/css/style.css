@@ -5,6 +5,11 @@ a {
 main {
   margin-bottom: 8em;
 }
+main .jumbotron {
+  margin-right: -15px !important;
+  margin-left: -15px !important;
+  border-radius: 0;
+}
 main .prix {
   font-weight: bold;
   font-size: 18px;
@@ -82,11 +87,11 @@ main .price {
 main .btn--width {
   width: 100%;
 }
+main .show {
+  display: block !important;
+}
 
 footer {
-  margin: auto;
-  position: fixed;
-  bottom: 0;
   width: 100%;
 }
 

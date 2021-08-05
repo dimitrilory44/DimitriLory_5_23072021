@@ -1,9 +1,9 @@
-import {cacheBasket, convertNumberInPrice, delAllElementPanier, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier} from '../utils/functions';
+import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier} from '../utils/functions';
+import {sendOrder} from '../services/order';
 
 cacheBasket();
 
-
-if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) {
+if(panier === null || panier.length === 0) {
     const newElmt = document.createElement("section");
     const elmt = document.getElementById("main");
 
@@ -29,28 +29,71 @@ if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) 
     newElmt.appendChild(a);
 } else {
 
-    const newElmt = document.createElement("section");
+    const sectionPanier = document.createElement("section");
     const elmt = document.getElementById("main");
 
-    newElmt.classList.add("my-5", "align-middle");
-    elmt.appendChild(newElmt);
+    sectionPanier.classList.add("my-5", "align-middle");
+    elmt.appendChild(sectionPanier);
 
-    newElmt.innerHTML = 
+    sectionPanier.innerHTML = 
         `   
-            <div class="d-flex mb-3 container">
+            <div class="d-flex mb-3">
                 <h1>Mon panier</h1>
             </div>
 
-            <div id="corps" class="card p-3 container">
+            <div id="corps" class="card p-3">
             </div>
 
             <div class="d-flex justify-content-end mt-3">
                 <h4 class="label mr-5">Total</h4>
                 <div id="total"></div>
             </div>
-            
-            <div class="d-flex justify-content-end mt-5">
-                <a role="button" id="valider" class="btn btn-success text-white" href="./validation.html">Valider ma commande</a>
+
+            <div id="accordion">
+                <div class="d-flex justify-content-end mt-5">
+                    <button id="valider" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Valider ma commande</button>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <h1 class="mb-3">Validation de ma commande</h1>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputNom">Nom</label>
+                                <input type="text" class="form-control" id="inputNom" placeholder="Entrer un nom" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputPrenom">Prenom</label>
+                                <input type="text" class="form-control" id="inputPrenom" placeholder="Entrer un prenom" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputMail">Email</label>
+                                <input type="email" class="form-control" id="inputMail" placeholder="Entrer un email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Adresse</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Ville</label>
+                                <input type="text" class="form-control" id="inputCity" placeholder="Ex: Nantes" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                            <label class="form-check-label" for="gridCheck">
+                                Valider les conditions de vente
+                            </label>
+                        </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" id="send" class="btn btn-success">Commander</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         `;
@@ -83,7 +126,7 @@ if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) 
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-5">
-                        <div class="qty "d-flex justify-content-start">
+                        <div class="qty d-flex justify-content-start">
                             <a class="diminuer" role="button">
                                 <span class="minus bg-dark" data-index="${index}">-</span>
                             </a>
@@ -119,6 +162,31 @@ if(JSON.parse(localStorage.getItem('produit')) === null || panier.length === 0) 
         aug.addEventListener("click", augmenterQuantite);
     }
 
+    let validation = document.getElementById("valider");
 
+    validation.addEventListener("click", (e) => {
+        validation.classList.add("d-none");
+    })
 
+    // Envoie donnée vers la base de données
+    let send = document.getElementById("send");
+
+    send.addEventListener("click", (e) => {
+        e.preventDefault();
+        let contact = {
+            firstName: 'sdoifse',
+            lastName: 'string',
+            address: 'string',
+            city: 'string',
+            email: 'string'
+        }
+    
+        let products = [];
+
+        for(let produit of panier) {
+            products.push(produit.id);
+        }
+        
+        sendOrder(contact, products);
+    })
 }
