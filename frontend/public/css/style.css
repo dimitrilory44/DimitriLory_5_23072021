@@ -68,7 +68,6 @@ main .trash--width {
 }
 main .trash {
   position: absolute;
-  top: 1rem;
   right: 10px;
   cursor: pointer;
   font-size: 20px;
