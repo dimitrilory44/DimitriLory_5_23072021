@@ -66,6 +66,8 @@ export function calculTotal(value) {
     });
     const total = document.getElementById("total");
     total.innerText += `${convertNumberInPrice(totalValue)}`;
+    const totalValueString = totalValue.toString();
+    localStorage.setItem("total", totalValueString);
     return total;
 }
 
@@ -227,3 +229,45 @@ export async function sendOrder(contact, products) {
       alert(error);
     });
 }
+
+export function contactCommande(order) {
+    let contact = [];
+    contact.push(order.contact);
+    
+    contact.forEach((element) => {
+
+        const c = document.getElementById("nomComplet");
+        c.textContent = `${element.firstName + ' ' + element.lastName}`;
+
+        const email = document.getElementById("email");
+        email.textContent = `${element.email}`;
+
+        const addresse = document.getElementById("adresse");
+        addresse.textContent = `${element.address}`;
+        
+        const city = document.getElementById("ville");
+        city.textContent = `${element.city}`;
+    })
+}
+
+export async function finCommande() {
+    const fin = document.getElementById("finCommande");
+    fin.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        document.location.href = "../index.html";
+    })
+}
+
+export function disableSubmit(disabled) {
+    if (disabled) {
+      document
+        .getElementById("send")
+        .setAttribute("disabled", true);
+    } else {
+      document
+        .getElementById("send")
+        .removeAttribute("disabled");
+    }
+  }
+  

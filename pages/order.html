@@ -32,8 +32,37 @@
           </div>
         </nav>
       </header>
-      <main class="container">
-        
+      <main id="main" class="container">
+        <section class="jumbotron mt-3 d-flex flex-column bg-body shadow">
+          <h1 class="display-4 text-secondary text-center">
+            Merci pour votre achat
+          </h1>
+          <div id="maCommande">
+              <h2 id="nomComplet" class="text-secondary text-center mb-5">
+                  <!-- import js du descriptif du produit -->
+              </h2>
+              <p class="text-secondary text-center">Vous recevrez les détails de votre commande avec cet email :</p>
+              <h4 id="email" class="text-secondary text-center mb-4">
+                  <!-- import js du descriptif du produit -->
+              </h4>
+              <p id="reference" class="text-secondary text-center">
+                  Référence : <strong></strong><!-- import js du descriptif du produit -->
+              </p>
+              <p class="totalCommande text-secondary text-center">
+                  Total de votre commande : <strong></strong>
+              </p>
+              <div class="text-secondary text-center">
+                  Votre commande va être envoyée à cette adresse :
+                  <p id="adresse" class="mt-4">
+                    <!-- import js du descriptif du produit -->
+                  </p>
+                  <p id="ville">
+                    <!-- import js du descriptif du produit -->
+                  </p>
+              </div>
+          </div>
+          <button id="finCommande" class="btn btn-primary" style="margin: 20px auto">Retour à la page d'accueil</button>
+        </section>
       </main>
       <footer class="bg-light d-flex flex-column">
         <div class="mt-3 d-flex justify-content-center">

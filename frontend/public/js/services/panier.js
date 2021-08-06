@@ -1,4 +1,6 @@
-import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier, sendOrder} from '../utils/functions';
+import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier, sendOrder, disableSubmit} from '../utils/functions';
+
+import {validEmail} from '../utils/validationForms';
 
 cacheBasket();
 
@@ -27,7 +29,6 @@ if(panier === null || panier.length === 0) {
 
     newElmt.appendChild(a);
 } else {
-
     const sectionPanier = document.createElement("section");
     const elmt = document.getElementById("main");
 
@@ -55,38 +56,31 @@ if(panier === null || panier.length === 0) {
 
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <h1 class="mb-3">Validation de ma commande</h1>
-                    <form>
+                    <form id="orderForm" method="POST">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="inputNom">Nom</label>
-                                <input type="text" class="form-control" id="inputNom" placeholder="Entrer un nom" required>
+                                <input type="text" class="form-control" id="nom" placeholder="Entrer un nom" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputPrenom">Prenom</label>
-                                <input type="text" class="form-control" id="inputPrenom" placeholder="Entrer un prenom" required>
+                                <input type="text" class="form-control" id="prenom" placeholder="Entrer un prenom" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputMail">Email</label>
-                                <input type="email" class="form-control" id="inputMail" placeholder="Entrer un email" required>
+                                <input type="email" class="form-control" id="email" placeholder="Entrer un email" required>
+                                <small></small>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputAddress">Adresse</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+                                <input type="text" class="form-control" id="adresse" placeholder="1234 Main St" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputCity">Ville</label>
-                                <input type="text" class="form-control" id="inputCity" placeholder="Ex: Nantes" required>
+                                <input type="text" class="form-control" id="ville" placeholder="Ex: Nantes" required>
                             </div>
-                        </div>
-                        <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                            <label class="form-check-label" for="gridCheck">
-                                Valider les conditions de vente
-                            </label>
-                        </div>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" id="send" class="btn btn-success">Commander</button>
@@ -94,7 +88,6 @@ if(panier === null || panier.length === 0) {
                     </form>
                 </div>
             </div>
-
         `;
     
     panier.forEach((p) => {
@@ -115,7 +108,7 @@ if(panier === null || panier.length === 0) {
                     <img src="${p.img}" class="img-fluid img-thumbnail w-75"/>
                   </div>
                   <div class="col-lg-7 col-md-7 col-sm-7 mt-3">
-                    <div class="d-flex justify-content-between ">
+                    <div class="d-flex justify-content-between">
                         <div class="d-flex justify-content-start flex-column descriptif">
                             <a role="button" href="produit.html?_id=${p.id}">
                                 <h3>${p.nom}</h3>
@@ -143,6 +136,7 @@ if(panier === null || panier.length === 0) {
     
     calculTotal(panier);
 
+    // Traitement sur les commandes
     let delElement = document.getElementsByClassName("trash");
         
     for (let del of delElement) {
@@ -161,31 +155,47 @@ if(panier === null || panier.length === 0) {
         aug.addEventListener("click", augmenterQuantite);
     }
 
+    // Enclenchement de la commande
     let validation = document.getElementById("valider");
 
-    validation.addEventListener("click", (e) => {
+    validation.addEventListener("click", () => {
         validation.classList.add("d-none");
-    })
-
-    // Envoie donnée vers la base de données
-    let send = document.getElementById("send");
-
-    send.addEventListener("click", (e) => {
-        e.preventDefault();
-        let contact = {
-            firstName: 'sdoifse',
-            lastName: 'string',
-            address: 'string',
-            city: 'string',
-            email: 'string'
-        }
-    
-        let products = [];
-
-        for(let produit of panier) {
-            products.push(produit.id);
-        }
         
-        sendOrder(contact, products);
-    })
+    });
+
+    let form = document.getElementById("orderForm");
+    form.email.addEventListener('change', function() {
+        validEmail(this);
+    });
+
+    // document.forms[0].addEventListener("submit", () => {
+    //     if(
+    //         document.getElementById("nom").value !== "" || 
+    //         document.getElementById("prenom").value !== "" || 
+    //         document.getElementById("adresse").value !== "" ||
+    //         document.getElementById("ville").value !== "" ||
+    //         document.getElementById("email").value !== "" ) 
+    //         {
+    //             let contact = {
+    //                 firstName: document.getElementById("prenom").value,
+    //                 lastName: document.getElementById("nom").value,
+    //                 address: document.getElementById("adresse").value,
+    //                 city: document.getElementById("ville").value,
+    //                 email: document.getElementById("email").value
+    //             }
+            
+    //             let products = [];
+        
+    //             for(let produit of panier) {
+    //                 products.push(produit.id);
+    //             }
+                
+    //             sendOrder(contact, products);
+    //         } else {
+    //             disableSubmit(true);
+    //         }
+
+    // });
+
+
 }
