@@ -1,7 +1,5 @@
 import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier, sendOrder, disableSubmit} from '../utils/functions';
 
-import {validEmail} from '../utils/validationForms';
-
 cacheBasket();
 
 if(panier === null || panier.length === 0) {
@@ -56,7 +54,7 @@ if(panier === null || panier.length === 0) {
 
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <h1 class="mb-3">Validation de ma commande</h1>
-                    <form id="orderForm" method="POST">
+                    <form id="orderForm">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="inputNom">Nom</label>
@@ -69,7 +67,7 @@ if(panier === null || panier.length === 0) {
                             <div class="form-group col-md-4">
                                 <label for="inputMail">Email</label>
                                 <input type="email" class="form-control" id="email" placeholder="Entrer un email" required>
-                                <small></small>
+                                <small id="errorMail"></small>
                             </div>
                         </div>
                         <div class="form-row">
@@ -163,39 +161,35 @@ if(panier === null || panier.length === 0) {
         
     });
 
-    let form = document.getElementById("orderForm");
-    form.email.addEventListener('change', function() {
-        validEmail(this);
-    });
+    let emailReg = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
 
-    // document.forms[0].addEventListener("submit", () => {
-    //     if(
-    //         document.getElementById("nom").value !== "" || 
-    //         document.getElementById("prenom").value !== "" || 
-    //         document.getElementById("adresse").value !== "" ||
-    //         document.getElementById("ville").value !== "" ||
-    //         document.getElementById("email").value !== "" ) 
-    //         {
-    //             let contact = {
-    //                 firstName: document.getElementById("prenom").value,
-    //                 lastName: document.getElementById("nom").value,
-    //                 address: document.getElementById("adresse").value,
-    //                 city: document.getElementById("ville").value,
-    //                 email: document.getElementById("email").value
-    //             }
+    const send = document.getElementById("send");
+    send.addEventListener('click', (e) => {
+        e.preventDefault();
+            if(emailReg.test(document.getElementById("email").value) == true) {
+                let contact = {
+                    firstName: document.getElementById("prenom").value,
+                    lastName: document.getElementById("nom").value,
+                    address: document.getElementById("adresse").value,
+                    city: document.getElementById("ville").value,
+                    email: document.getElementById("email").value
+                }
             
-    //             let products = [];
+                let products = [];
         
-    //             for(let produit of panier) {
-    //                 products.push(produit.id);
-    //             }
+                for(let produit of panier) {
+                    products.push(produit.id);
+                }
                 
-    //             sendOrder(contact, products);
-    //         } else {
-    //             disableSubmit(true);
-    //         }
-
-    // });
-
+                sendOrder(contact, products);
+            } else {
+                const errorMail = document.getElementById("errorMail");
+                errorMail.textContent = 'Mail invalid';
+                errorMail.classList.add('text-danger');
+                const email = document.getElementById("email");
+                email.classList.add("is-invalid");
+            }
+            
+    });
 
 }
