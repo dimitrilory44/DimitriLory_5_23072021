@@ -19,6 +19,9 @@ module.exports = {
         ],
         panier: [
             "./public/js/services/panier.js"
+        ],
+        commande: [
+            "./public/js/services/order.js"
         ]
     },
     output: {

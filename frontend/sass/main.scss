@@ -27,18 +27,6 @@ main {
     }
 
     .qty {
-        .plus {
-            cursor: pointer;
-            display: inline-block;
-            vertical-align: top;
-            color: white;
-            width: 30px;
-            height: 30px;
-            font: 30px/1 Arial,sans-serif;
-            text-align: center;
-            border-radius: 50%;
-        }
-
         .minus {
             cursor: pointer;
             display: inline-block;
@@ -50,7 +38,22 @@ main {
             text-align: center;
             border-radius: 50%;
             background-clip: padding-box;
+            margin-right: 5px;
         }
+
+        .plus {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            color: white;
+            width: 30px;
+            height: 30px;
+            font: 30px/1 Arial,sans-serif;
+            text-align: center;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
     }
 
     .augmenter {

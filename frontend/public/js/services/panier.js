@@ -1,5 +1,4 @@
-import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier} from '../utils/functions';
-import {sendOrder} from '../services/order';
+import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier, sendOrder} from '../utils/functions';
 
 cacheBasket();
 

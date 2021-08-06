@@ -1,3 +1,5 @@
+import { apiURL } from "../config";
+
 // bien penser à supprimer les functions inutilisé
 export const panier = JSON.parse(localStorage.getItem('produit')) || [];
 
@@ -29,7 +31,7 @@ export function delAllElementPanier() {
     });
 }
 
-export function delElementPanier(event) {
+export async function delElementPanier(event) {
     let indexValue = event.target.getAttribute("data-index");
     console.log(indexValue);
     panier.splice(indexValue, 1);
@@ -37,7 +39,7 @@ export function delElementPanier(event) {
     window.location.reload();
 }
 
-export function diminuerQuantite(event) {
+export async function diminuerQuantite(event) {
     let indexQuantite = event.target.getAttribute("data-index");
     if(panier[indexQuantite].quantite <= 1) {
         panier.splice(indexQuantite, 1);
@@ -50,7 +52,7 @@ export function diminuerQuantite(event) {
     }
 }
 
-export function augmenterQuantite(event) {
+export async function augmenterQuantite(event) {
     let indexQuantite = event.target.getAttribute("data-index");
     panier[indexQuantite].quantite++;
     localStorage.setItem("produit", JSON.stringify(panier));
@@ -201,4 +203,27 @@ export function getElementById(value) {
             localStorage.setItem('produit', sendStorage);
         }
     })   
+}
+
+export async function sendOrder(contact, products) {
+    fetch(`${apiURL}/api/cameras/order`, {
+        method: "POST",
+        headers: { 
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({contact, products})
+    })
+    .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+    .then((value) => {
+         localStorage.setItem("order", JSON.stringify(value));
+         document.location.href = "order.html";
+    })
+    .catch((error) => {
+      alert(error);
+    });
 }
