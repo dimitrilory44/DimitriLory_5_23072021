@@ -1,4 +1,5 @@
-import { convertNumberInPrice } from "../../utils/functions";
+import {panier} from '../../utils/variables';
+import {convertNumberInPrice} from "../../utils/functions";
 
 export function getElementById(value) {
     // Récupération titre et descriptif
@@ -39,14 +40,13 @@ export function getElementById(value) {
     const elmt = document.getElementById('goToBasket');
     const notif = document.getElementById("notification");
     
-    console.log(localStorage.length);
     let compteur = localStorage.length;
 
     // Initialisation de la variable produit
     const produit = [];
-    const idObject = JSON.parse(localStorage.getItem('produit'));
-    console.log(idObject);
-    if(JSON.parse(localStorage.getItem('produit')) !== null) {
+    const idObject = panier;
+    
+    if(panier !== null) {
         notif.innerText = idObject.length;
     } else {
         notif.innerText = 0;
@@ -61,7 +61,7 @@ export function getElementById(value) {
         
         notif.innerText = ++compteur;
         
-        if(JSON.parse(localStorage.getItem('produit')) === null) {
+        if(panier === null) {
             produit.push(
                 {
                     id: value._id,
@@ -73,7 +73,6 @@ export function getElementById(value) {
                     prix: value.price
                 }
             )
-            console.log(produit);
             let sendStorage = JSON.stringify(produit);
             localStorage.setItem('produit', sendStorage);
         } else {
@@ -88,7 +87,6 @@ export function getElementById(value) {
                     prix: value.price
                 }
             )
-            console.log(idObject);
             let sendStorage = JSON.stringify(idObject);
             localStorage.setItem('produit', sendStorage);
         }
