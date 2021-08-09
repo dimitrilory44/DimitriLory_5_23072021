@@ -16,7 +16,6 @@ export function getParameters() {
     let search_params = new URLSearchParams(url.search);
     if(search_params.has('_id')) {
         let id = search_params.get('_id');
-        console.log(id);
         return id;
     }
 }
