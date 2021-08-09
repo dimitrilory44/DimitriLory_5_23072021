@@ -1,5 +1,7 @@
 import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier, sendOrder, disableSubmit} from '../utils/functions';
 
+import {verificationFormulaire} from '../utils/verifFormulaire';
+
 cacheBasket();
 
 if(panier === null || panier.length === 0) {
@@ -45,46 +47,6 @@ if(panier === null || panier.length === 0) {
             <div class="d-flex justify-content-end mt-3">
                 <h4 class="label mr-5">Total</h4>
                 <div id="total"></div>
-            </div>
-
-            <div id="accordion">
-                <div class="d-flex justify-content-end mt-5">
-                    <button id="valider" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Valider ma commande</button>
-                </div>
-
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <h1 class="mb-3">Validation de ma commande</h1>
-                    <form id="orderForm">
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="inputNom">Nom</label>
-                                <input type="text" class="form-control" id="nom" placeholder="Entrer un nom" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputPrenom">Prenom</label>
-                                <input type="text" class="form-control" id="prenom" placeholder="Entrer un prenom" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputMail">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Entrer un email" required>
-                                <small id="errorMail"></small>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputAddress">Adresse</label>
-                                <input type="text" class="form-control" id="adresse" placeholder="1234 Main St" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">Ville</label>
-                                <input type="text" class="form-control" id="ville" placeholder="Ex: Nantes" required>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" id="send" class="btn btn-success">Commander</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         `;
     
@@ -153,6 +115,56 @@ if(panier === null || panier.length === 0) {
         aug.addEventListener("click", augmenterQuantite);
     }
 
+    // section formulaire commande
+    const accordion = document.createElement("section");
+    accordion.classList.add("accordion");
+    elmt.appendChild(accordion);
+
+    accordion.innerHTML = 
+        `
+            <div class="d-flex justify-content-end mt-5">
+                <button id="valider" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Valider ma commande</button>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent=".accordion">
+                <h1 class="mb-3">Validation de ma commande</h1>
+                <form id="orderForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label id="inputNom" for="inputNom">Nom</label>
+                            <input type="text" class="form-control" id="nom" placeholder="Entrer un nom">
+                            <small id="errorNom"></small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label id="inputPrenom" for="inputPrenom">Prenom</label>
+                            <input type="text" class="form-control" id="prenom" placeholder="Entrer un prenom">
+                            <small id="errorPrenom"></small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label id="inputMail" for="inputMail">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Entrer un email">
+                            <small id="errorMail"></small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label id="inputAddress" for="inputAddress">Adresse</label>
+                            <input type="text" class="form-control" id="adresse" placeholder="Ex : 30 rue Orinoco">
+                            <small id="errorAdresse"></small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label id="inputCity" for="inputCity">Ville</label>
+                            <input type="text" class="form-control" id="ville" placeholder="Ex : Nantes">
+                            <small id="errorCity"></small>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" id="send" class="btn btn-success">Commander</button>
+                    </div>
+                </form>
+            </div>
+        `
+
     // Enclenchement de la commande
     let validation = document.getElementById("valider");
 
@@ -164,18 +176,23 @@ if(panier === null || panier.length === 0) {
     let emailReg = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
 
     const send = document.getElementById("send");
+
     send.addEventListener('click', (e) => {
         e.preventDefault();
-            if(emailReg.test(document.getElementById("email").value) == true) {
-                let contact = {
-                    firstName: document.getElementById("prenom").value,
-                    lastName: document.getElementById("nom").value,
-                    address: document.getElementById("adresse").value,
-                    city: document.getElementById("ville").value,
-                    email: document.getElementById("email").value
-                }
-            
-                let products = [];
+            let contact = {
+                firstName: document.getElementById("prenom").value,
+                lastName: document.getElementById("nom").value,
+                address: document.getElementById("adresse").value,
+                city: document.getElementById("ville").value,
+                email: document.getElementById("email").value
+            }
+        
+            let products = [];
+            if(emailReg.test(contact.email) == true 
+                & contact.firstName !== ""
+                & contact.lastName !== ""
+                & contact.address !== ""
+                & contact.city !== "") {
         
                 for(let produit of panier) {
                     products.push(produit.id);
@@ -183,11 +200,7 @@ if(panier === null || panier.length === 0) {
                 
                 sendOrder(contact, products);
             } else {
-                const errorMail = document.getElementById("errorMail");
-                errorMail.textContent = 'Mail invalid';
-                errorMail.classList.add('text-danger');
-                const email = document.getElementById("email");
-                email.classList.add("is-invalid");
+                verificationFormulaire(emailReg, contact);
             }
             
     });

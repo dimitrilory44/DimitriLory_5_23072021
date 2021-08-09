@@ -252,22 +252,17 @@ export function contactCommande(order) {
 
 export async function finCommande() {
     const fin = document.getElementById("finCommande");
+    const retourAccueil = document.getElementById("retour");
+    
     fin.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.clear();
         document.location.href = "../index.html";
-    })
-}
+    });
 
-export function disableSubmit(disabled) {
-    if (disabled) {
-      document
-        .getElementById("send")
-        .setAttribute("disabled", true);
-    } else {
-      document
-        .getElementById("send")
-        .removeAttribute("disabled");
-    }
-  }
-  
+    retourAccueil.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        document.location.href = "../index.html";
+    });
+} 

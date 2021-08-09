@@ -2,6 +2,10 @@ a {
   color: black;
 }
 
+#retour {
+  cursor: pointer;
+}
+
 main {
   margin-bottom: 8em;
 }

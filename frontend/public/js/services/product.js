@@ -12,5 +12,5 @@ fetch(`${apiURL}/api/cameras/${id}`)
         getElementById(value);
     })
     .catch((err) => {
-        throw new err;
+        alert(err);
     });
