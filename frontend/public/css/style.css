@@ -25,6 +25,9 @@ main .show {
   display: flex !important;
   justify-content: center;
 }
+main #finCommande {
+  margin: 20px auto;
+}
 main .qty .minus {
   cursor: pointer;
   display: inline-block;
