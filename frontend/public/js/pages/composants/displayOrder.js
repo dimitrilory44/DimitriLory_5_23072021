@@ -1,4 +1,4 @@
-import { convertNumberInPrice } from "../../utils/functions";
+import {convertNumberInPrice} from "../../utils/functions";
 
 export function displayTicket(order, total) {
     let contact = [];

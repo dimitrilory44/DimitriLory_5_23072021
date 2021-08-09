@@ -1,4 +1,4 @@
-import { convertNumberInPrice } from "../../utils/functions";
+import {convertNumberInPrice} from "../../utils/functions";
 
 // Affichage de tous les produits sur la page d'accueil
 export function getAllElement(values) {
