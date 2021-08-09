@@ -1,10 +1,10 @@
-import {cacheBasket, convertNumberInPrice, delElementPanier, diminuerQuantite, augmenterQuantite, calculTotal, panier, sendOrder, disableSubmit} from '../utils/functions';
+import {sendOrder} from '../../service/api';
 
-import {verificationFormulaire} from '../utils/verifFormulaire';
+import { panier } from '../../utils/variables';
+import { calculTotal, convertNumberInPrice, delElementPanier, augmenterQuantite, diminuerQuantite} from '../../utils/functions';
 
-cacheBasket();
-
-if(panier === null || panier.length === 0) {
+// Bloc panier lorsqu'il n'y a pas d'éléments
+export function noElementInBasket() {
     const newElmt = document.createElement("section");
     const elmt = document.getElementById("main");
 
@@ -28,7 +28,10 @@ if(panier === null || panier.length === 0) {
     a.innerText = "Retour au commande"
 
     newElmt.appendChild(a);
-} else {
+}
+
+// Bloc panier lorsqu'il y a des éléments
+export function elementInBasket() {
     const sectionPanier = document.createElement("section");
     const elmt = document.getElementById("main");
 
@@ -164,6 +167,7 @@ if(panier === null || panier.length === 0) {
                 </form>
             </div>
         `
+    ;
 
     // Enclenchement de la commande
     let validation = document.getElementById("valider");
@@ -204,5 +208,4 @@ if(panier === null || panier.length === 0) {
             }
             
     });
-
 }

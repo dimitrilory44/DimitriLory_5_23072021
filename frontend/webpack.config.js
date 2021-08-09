@@ -11,17 +11,17 @@ module.exports = {
     },
     mode: "production",
     entry: {
-        app: [
-            "./public/js/services/index.js"
+        index: [
+            "./public/js/pages/index.js"
         ],
         produit: [
-            "./public/js/services/product.js"
+            "./public/js/pages/product.js"
         ],
         panier: [
-            "./public/js/services/panier.js"
+            "./public/js/pages/panier.js"
         ],
         commande: [
-            "./public/js/services/order.js"
+            "./public/js/pages/order.js"
         ]
     },
     output: {
