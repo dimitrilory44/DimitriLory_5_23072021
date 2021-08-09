@@ -14,13 +14,13 @@ module.exports = {
         index: [
             "./public/js/pages/index.js"
         ],
-        produit: [
+        product: [
             "./public/js/pages/product.js"
         ],
-        panier: [
+        basket: [
             "./public/js/pages/panier.js"
         ],
-        commande: [
+        order: [
             "./public/js/pages/order.js"
         ]
     },
