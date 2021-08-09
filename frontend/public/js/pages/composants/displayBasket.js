@@ -1,7 +1,8 @@
 import {sendOrder} from '../../service/api';
 
-import { panier } from '../../utils/variables';
-import { calculTotal, convertNumberInPrice, delElementPanier, augmenterQuantite, diminuerQuantite} from '../../utils/functions';
+import {panier} from '../../utils/variables';
+import {calculTotal, convertNumberInPrice, delElementPanier, augmenterQuantite, diminuerQuantite} from '../../utils/functions';
+import {verificationFormulaire} from '../../utils/verifFormulaire';
 
 // Bloc panier lorsqu'il n'y a pas d'éléments
 export function noElementInBasket() {
@@ -100,19 +101,19 @@ export function elementInBasket() {
     calculTotal(panier);
 
     // Traitement sur les commandes
-    let delElement = document.getElementsByClassName("trash");
+    const delElement = document.getElementsByClassName("trash");
         
     for (let del of delElement) {
         del.addEventListener("click", delElementPanier);
     }
 
-    let diminuer = document.getElementsByClassName("diminuer");
+    const diminuer = document.getElementsByClassName("diminuer");
 
     for(let dim of diminuer) {
         dim.addEventListener("click", diminuerQuantite);
     }
 
-    let augmenter = document.getElementsByClassName("augmenter");
+    const augmenter = document.getElementsByClassName("augmenter");
 
     for(let aug of augmenter) {
         aug.addEventListener("click", augmenterQuantite);
@@ -170,14 +171,14 @@ export function elementInBasket() {
     ;
 
     // Enclenchement de la commande
-    let validation = document.getElementById("valider");
+    const validation = document.getElementById("valider");
 
     validation.addEventListener("click", () => {
         validation.classList.add("d-none");
         
     });
 
-    let emailReg = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+    const emailReg = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
 
     const send = document.getElementById("send");
 
