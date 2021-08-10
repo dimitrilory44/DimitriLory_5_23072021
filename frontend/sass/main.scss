@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 a {
     color: black;
 }
@@ -78,6 +80,7 @@ main {
     #total {
         font-weight: bold;
         font-size: 20px;
+        margin-left: 50px;
     }
 
     .label {

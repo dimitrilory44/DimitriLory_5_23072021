@@ -9,7 +9,7 @@ export function noElementInBasket() {
     const newElmt = document.createElement("section");
     const elmt = document.getElementById("main");
 
-    newElmt.classList.add('jumbotron', 'd-flex', 'shadow', 'bg-body', 'mt-3', 'flex-column');
+    newElmt.classList.add('jumbotron', 'd-flex', 'p-5', 'mb-4', 'bg-light', 'mt-3', 'flex-column');
    
     elmt.appendChild(newElmt);
 
@@ -49,7 +49,7 @@ export function elementInBasket() {
             </div>
 
             <div class="d-flex justify-content-end mt-3">
-                <h4 class="label mr-5">Total</h4>
+                <h4 class="label">Total</h4>
                 <div id="total"></div>
             </div>
         `;
@@ -64,7 +64,7 @@ export function elementInBasket() {
             `
                 <div class="d-flex justify-content-end">
                     <a class="trash" role="button">
-                        <i class="fas fa-trash-alt trash--color" data-index="${index}"></i>
+                        <i class="bi bi-trash-fill trash--color" data-index="${index}"></i>
                     </a>
                 </div>
                 <div class="row d-flex mb-3">
@@ -127,36 +127,36 @@ export function elementInBasket() {
     accordion.innerHTML = 
         `
             <div class="d-flex justify-content-end mt-5">
-                <button id="valider" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Valider ma commande</button>
+                <button id="valider" class="btn btn-primary collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">Valider ma commande</button>
             </div>
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent=".accordion">
                 <h1 class="mb-3">Validation de ma commande</h1>
                 <form id="orderForm">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
+                    <div class="row">
+                        <div class="form-group col-md-4 mb-3">
                             <label id="inputNom" for="inputNom">Nom</label>
                             <input type="text" class="form-control" id="nom" placeholder="Entrer un nom">
                             <small id="errorNom"></small>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 mb-3">
                             <label id="inputPrenom" for="inputPrenom">Prenom</label>
                             <input type="text" class="form-control" id="prenom" placeholder="Entrer un prenom">
                             <small id="errorPrenom"></small>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 mb-3">
                             <label id="inputMail" for="inputMail">Email</label>
                             <input type="email" class="form-control" id="email" placeholder="Entrer un email">
                             <small id="errorMail"></small>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-3">
                             <label id="inputAddress" for="inputAddress">Adresse</label>
                             <input type="text" class="form-control" id="adresse" placeholder="Ex : 30 rue Orinoco">
                             <small id="errorAdresse"></small>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 mb-3">
                             <label id="inputCity" for="inputCity">Ville</label>
                             <input type="text" class="form-control" id="ville" placeholder="Ex : Nantes">
                             <small id="errorCity"></small>

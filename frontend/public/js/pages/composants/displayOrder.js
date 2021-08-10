@@ -24,17 +24,20 @@ export function displayTicket(order, total) {
     })
 
     const fin = document.getElementById("finCommande");
-    const retourAccueil = document.getElementById("retour");
     
     fin.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.clear();
         document.location.href = "../index.html";
     });
-    
+}
+
+export async function retourAccueil() {
+    const retourAccueil = document.getElementById("retour");
+
     retourAccueil.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.clear();
         document.location.href = "../index.html";
     });
-} 
+}

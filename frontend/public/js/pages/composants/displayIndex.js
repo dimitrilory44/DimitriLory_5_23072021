@@ -13,13 +13,13 @@ export function getAllElement(values) {
                 <div class="card">
                     <img class="card-img-top" src="${value.imageUrl}" alt="Image ${value.name}">
                     <div class="card-body">
-                        <div class="d-flex">
+                        <div class="d-flex flex-row justify-content-between">
                             <h5 class="card-title">${value.name}</h5>
-                            <div class="ml-auto align-items-center"><h5><strong>${price}</strong></h5></div>
+                            <div><h5><strong>${price}</strong></h5></div>
                         </div>
                         <p class="card-text">${value.description}</p>
                         <a href="pages/produit.html?_id=${value._id}" class="btn btn-outline-secondary btn--width">
-                            Descriptif du produit
+                            Descriptif du produit   
                         </a>
                     </div>
                 </div>
