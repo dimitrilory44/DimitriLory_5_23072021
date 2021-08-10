@@ -31,13 +31,3 @@ export function displayTicket(order, total) {
         document.location.href = "../index.html";
     });
 }
-
-export async function retourAccueil() {
-    const retourAccueil = document.getElementById("retour");
-
-    retourAccueil.addEventListener("click", (e) => {
-        e.preventDefault();
-        localStorage.clear();
-        document.location.href = "../index.html";
-    });
-}
