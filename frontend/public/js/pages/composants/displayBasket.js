@@ -127,7 +127,7 @@ export function elementInBasket() {
     accordion.innerHTML = 
         `
             <div class="d-flex justify-content-end mt-5">
-                <button id="valider" class="btn btn-primary collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">Valider ma commande</button>
+            <button id="valider" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Valider ma commande</button>
             </div>
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent=".accordion">
