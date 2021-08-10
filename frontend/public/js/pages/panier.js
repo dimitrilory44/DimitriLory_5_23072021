@@ -10,4 +10,4 @@ import {noElementInBasket, elementInBasket} from './composants/displayBasket';
     } else {
         return elementInBasket();
     }
-})()
+})();

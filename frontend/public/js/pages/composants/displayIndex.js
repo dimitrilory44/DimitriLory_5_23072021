@@ -11,7 +11,7 @@ export function getAllElement(values) {
         `
             <div class="col-lg-6 mb-3">
                 <div class="card">
-                    <img class="card-img-top" src="${value.imageUrl}" alt="Card image cap">
+                    <img class="card-img-top" src="${value.imageUrl}" alt="Image ${value.name}">
                     <div class="card-body">
                         <div class="d-flex">
                             <h5 class="card-title">${value.name}</h5>

@@ -69,7 +69,7 @@ export function elementInBasket() {
                 </div>
                 <div class="row d-flex mb-3">
                   <div class="col-lg-5 col-md-5 col-sm-5">
-                    <img src="${p.img}" class="img-fluid img-thumbnail w-75"/>
+                    <img src="${p.img}" class="img-fluid img-thumbnail w-75" alt="Image ${p.nom}"/>
                   </div>
                   <div class="col-lg-7 col-md-7 col-sm-7 mt-3">
                     <div class="d-flex justify-content-between">

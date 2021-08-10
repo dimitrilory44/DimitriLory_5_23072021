@@ -17,7 +17,7 @@ export function getElementById(value) {
 
     // Récupération de l'image du produit
     const image = document.getElementById('image');
-    image.innerHTML = `<img class="card-img-top" src="${value.imageUrl}"/>`;
+    image.innerHTML = `<img class="card-img-top" src="${value.imageUrl}" alt="Image ${value.name}"/>`;
 
     const quantite = document.getElementById('quantite');
     for(let qut = 1; qut <= 5; qut++ ) {
