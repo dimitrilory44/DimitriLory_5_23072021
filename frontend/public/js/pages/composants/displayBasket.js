@@ -58,6 +58,7 @@ export function elementInBasket() {
         let index = panier.indexOf(p);
         let ssTotal = 0;
         ssTotal = `${p.prix}` * parseInt(`${p.quantite}`);
+        let total = convertNumberInPrice(`${ssTotal}`);
         
         const body = document.getElementById("corps");
         body.innerHTML += 
@@ -91,7 +92,7 @@ export function elementInBasket() {
                                 <span class="plus bg-dark" data-index="${index}">+</span>
                             </a>
                         </div>
-                        <div class="d-flex justify-content-end price">${convertNumberInPrice(`${ssTotal}`)}</div>
+                        <div class="d-flex justify-content-end price">${total}</div>
                     </div>
                   </div>
                 </div>

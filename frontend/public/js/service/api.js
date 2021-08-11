@@ -4,7 +4,7 @@ import {apiURL} from './config';
 export async function getAllProduits() {
     // Je récupère toutes les valeurs sur la page d'accueil
     return fetch(`${apiURL}/api/cameras`) 
-        .then((res) => {
+        .then(function(res) {
             if (res.ok) {
                 return res.json();
             }
@@ -19,7 +19,7 @@ export async function getAllProduits() {
 export async function getOneElementWithId(elementId) {
     // Je récupère par l'id sur la page d'accueil
     return fetch(`${apiURL}/api/cameras/${elementId}`) 
-        .then((res) => {
+        .then(function(res) {
             if (res.ok) {
                 return res.json();
             }

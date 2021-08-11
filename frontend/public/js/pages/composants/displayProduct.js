@@ -56,8 +56,6 @@ export function getElementById(value) {
         e.preventDefault();
         const nomAlert = document.querySelector("#alert span strong");
         nomAlert.textContent = `${value.name}`;
-        // const alert = document.getElementById("alert");
-        // alert.classList.replace("no-show", "show");
         
         notif.innerText = ++compteur;
         
