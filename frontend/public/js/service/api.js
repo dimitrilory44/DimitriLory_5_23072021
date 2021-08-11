@@ -4,9 +4,9 @@ import {apiURL} from './config';
 export async function getAllProduits() {
     // Je récupère toutes les valeurs sur la page d'accueil
     return fetch(`${apiURL}/api/cameras`) 
-        .then(function(res) {
-            if (res.ok) {
-                return res.json();
+        .then(function(res1) {
+            if (res1.ok) {
+                return res1.json();
             }
         })
         .then((produits) => produits)
@@ -19,9 +19,9 @@ export async function getAllProduits() {
 export async function getOneElementWithId(elementId) {
     // Je récupère par l'id sur la page d'accueil
     return fetch(`${apiURL}/api/cameras/${elementId}`) 
-        .then(function(res) {
-            if (res.ok) {
-                return res.json();
+        .then(function(res2) {
+            if (res2.ok) {
+                return res2.json();
             }
         })
         .then((productsById) => productsById)
@@ -40,11 +40,11 @@ export async function sendOrder(contact, products) {
         },
         body: JSON.stringify({contact, products})
     })
-    .then((res) => {
-        if (res.ok) {
-          return res.json();
+    .then(function(res3) {
+        if (res3.ok) {
+          return res3.json();
         }
-      })
+    })
     .then((value) => {
          localStorage.setItem("order", JSON.stringify(value));
          document.location.href = "order.html";
