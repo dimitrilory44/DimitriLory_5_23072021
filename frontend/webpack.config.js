@@ -4,7 +4,7 @@ module.exports = {
     devServer: {
         port: 5000,
         headers: {
-            'Access-Control-Allow-Origin': 'https://dimitrilory44.github.io/DimitriLory_5_23072021/',
+            'Access-Control-Allow-Origin': 'https://dimitrilory44.github.io/DimitriLory_5_23072021/index.html',
             'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS'
         }
