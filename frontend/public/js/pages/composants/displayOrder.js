@@ -7,7 +7,7 @@ export function displayTicket(order, total) {
     ref.innerText = `${order.orderId}`;
 
     const totalCommande = document.querySelector(".totalCommande strong");
-    totalCommande.innerText = `${convertNumberInPrice(total)}`;;
+    totalCommande.innerText = `${convertNumberInPrice(total)}`;
     
     contact.forEach((element) => {
         const c = document.getElementById("nomComplet");

@@ -29,13 +29,13 @@ export function getElementById(value) {
     price.textContent = `${priceConvert}`;
 
     // Visualisation du prix suivi la quantité
-    quantite.addEventListener('change', (event) => {
-        let newPrice = 0;
-        const price = document.querySelector('.prix span');
-        newPrice = `${value.price}` * parseInt(`${event.target.value}`);
-        const priceConvert = convertNumberInPrice(`${newPrice}`);
-        price.textContent = `${priceConvert}`;
-    });
+    // quantite.addEventListener('change', (event) => {
+    //     let newPrice = 0;
+    //     const price = document.querySelector('.prix span');
+    //     newPrice = `${value.price}` * parseInt(`${event.target.value}`);
+    //     const priceConvert = convertNumberInPrice(`${newPrice}`);
+    //     price.textContent = `${priceConvert}`;
+    // });
 
     const elmt = document.getElementById('goToBasket');
     const notif = document.getElementById("notification");
@@ -56,8 +56,8 @@ export function getElementById(value) {
         e.preventDefault();
         const nomAlert = document.querySelector("#alert span strong");
         nomAlert.textContent = `${value.name}`;
-        const alert = document.getElementById("alert");
-        alert.classList.replace("no-show", "show");
+        // const alert = document.getElementById("alert");
+        // alert.classList.replace("no-show", "show");
         
         notif.innerText = ++compteur;
         

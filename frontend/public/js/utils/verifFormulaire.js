@@ -33,13 +33,12 @@ export function verificationFormulaire(emailReg, contact) {
         nom.classList.add("is-invalid");
     }
 
-
     // Verification champ mail
     const errorMail = document.getElementById("errorMail");
     const labelMail = document.getElementById("inputMail");
     const email = document.getElementById("email");
 
-    if(emailReg.test(contact.email) == false) {
+    if(!emailReg.test(contact.email)) {
         labelMail.classList.add('text-danger');
         errorMail.textContent = 'Veuillez entrer une adresse mail valide';
         errorMail.classList.add('text-danger');
@@ -49,7 +48,12 @@ export function verificationFormulaire(emailReg, contact) {
         errorMail.textContent = 'Le champ email est obligatoire';
         errorMail.classList.add('text-danger');
         email.classList.add("is-invalid");
-    } 
+    } else {
+        labelMail.classList.replace('text-danger', 'text-success');
+        errorMail.textContent = '';
+        errorMail.classList.replace('text-success', 'text-danger');
+        email.classList.replace("is-invalid", "is-valid");
+    }
 
     // Verification champ adresse
     const errorAdresse = document.getElementById("errorAdresse");

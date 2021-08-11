@@ -18,13 +18,6 @@ main .prix {
   font-weight: bold;
   font-size: 18px;
 }
-main .no-show {
-  display: none !important;
-}
-main .show {
-  display: flex !important;
-  justify-content: center;
-}
 main #finCommande {
   margin: 20px auto;
 }

@@ -1,13 +1,11 @@
 import {panier} from '../utils/variables';
 
 export function convertNumberInPrice(number) {
-    let price = Intl.NumberFormat('fr-FR', 
+    return Intl.NumberFormat('fr-FR', 
     {
         style: 'currency',
         currency: 'EUR'
     }).format(number/100);
-    
-    return price;
 }
 
 export function getParameters() {
@@ -15,8 +13,7 @@ export function getParameters() {
     let url = new URL(str);
     let search_params = new URLSearchParams(url.search);
     if(search_params.has('_id')) {
-        let id = search_params.get('_id');
-        return id;
+        return search_params.get('_id');
     }
 }
 

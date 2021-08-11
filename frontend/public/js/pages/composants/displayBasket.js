@@ -178,7 +178,7 @@ export function elementInBasket() {
         
     });
 
-    const emailReg = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+    const emailReg = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/g;
 
     const send = document.getElementById("send");
 
@@ -193,7 +193,7 @@ export function elementInBasket() {
             }
         
             let products = [];
-            if(emailReg.test(contact.email) == true 
+            if(emailReg.test(contact.email) 
                 & contact.firstName !== ""
                 & contact.lastName !== ""
                 & contact.address !== ""
