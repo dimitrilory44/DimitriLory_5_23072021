@@ -58,24 +58,6 @@ Revenu à la racine de votre projet, lancer les commandes suivantes :
   cd frontend
   npm install
 ```
-
-Afin que l'API fonctionne localement ouvrer le fichier `api.js` situé dans le dossier service dans `/public`.
-Remplacer ensuite la ligne suivante :
-
-```bash
-  import {apiURL} from './config';
-```
-Par :
-
-```bash
-  const apiURL = 'http://localhost:3000';
-```
-
-Effectuer enfin les commandes suivantes afin de valider les modifications de la partie front-end :
-
-```bash
-  npm run build
-```
     
 ## Hébergement
 
