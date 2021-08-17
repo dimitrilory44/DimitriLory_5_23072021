@@ -22,6 +22,7 @@ Pour installer votre projet localement vous devrez tout d'abord cloner votre pro
 
 ```bash
   git clone https://github.com/dimitrilory44/DimitriLory_5_23072021.git
+  cd DimitriLory_5_23072021
 ```
 
 Cloner aussi la partie back-end en allant sur ce [lien](https://github.com/OpenClassrooms-Student-Center/JWDP5.git).
